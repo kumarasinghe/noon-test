@@ -1,0 +1,22 @@
+:root {
+    // colors
+    --color-accent-1: purple;
+    --color-text-accent-1: white;
+    --color-foreground: white;
+    --color-background: rgb(250, 250, 250);
+    --grey-shade-1: rgb(105, 105, 105);
+    --grey-shade-2: rgb(170, 170, 170);
+    --grey-shade-3: rgb(211, 211, 211);
+    // transitions
+    --transition-fastest: all 200ms;
+    // animations
+    .fadeInUp{
+      animation: fadeInUp 250ms;
+    }
+    @keyframes fadeInUp {
+      0%{
+        opacity: 0;
+        margin-top:10%;
+      }
+    }
+  }

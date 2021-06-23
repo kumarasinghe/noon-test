@@ -1,0 +1,36 @@
+.nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  list-style: none;
+  background-color: var(--color-accent-1);
+  color: var(--color-text-accent-1);
+  z-index: 1;
+
+  .menu-item {
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+
+    &.active {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+// smartphones
+@media (max-width: 425px) {
+  .nav {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    .menu-item {
+      flex-grow: 1;
+      .title {
+        display: none;
+      }
+    }
+  }
+}

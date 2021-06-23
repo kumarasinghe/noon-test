@@ -1,0 +1,88 @@
+.card {
+  user-select: none;
+
+  .header {
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    .profile-picture {
+      width: 48px;
+      height: 48px;
+      border-radius: 100%;
+      margin-right: 10px;
+      object-fit: cover;
+    }
+    .username {
+      color: var(--color-accent-1);
+      font-weight: bold;
+    }
+  }
+  .body {
+    .image-container {
+      position: relative;
+      .toolbar {
+        display: flex;
+        padding: 50px 20px 20px 20px;
+        color: white;
+        background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+
+        .title {
+          font-size: 20px;
+          text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+          margin-bottom: 2px;
+        }
+        .price {
+          font-weight: bold;
+          font-size: 22px;
+          text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        .tool-button-container {
+          flex-grow: 1;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+
+          .favorite-btn {
+            cursor: pointer;
+            transition: var(--transition-fastest);
+          }
+          .favorite-btn:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+      .image {
+        display: block;
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+      }
+    }
+  }
+  .footer {
+    padding: 20px 20px 30px 20px;
+    border-bottom: 1px solid var(--grey-shade-3);
+    .like-stats {
+      color: var(--color-accent-1);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .description {
+      color: var(--grey-shade-1);
+    }
+    .tag-container {
+      margin: 4px 0 14px 0;
+      .tag {
+        margin-right: 5px;
+        color: var(--color-accent-1);
+      }
+    }
+    .comment-container {
+      color: var(--grey-shade-2);
+      cursor: pointer;
+    }
+  }
+}
