@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const fs = require("fs");
+const cors = require("cors");
 
 /************ CONSTS  *************/
 
@@ -10,12 +11,11 @@ const baseURL = "/api/v1";
 
 /************ INIT  **************/
 
+// unblock cors
+app.use(cors());
+
 // enable post body parsing
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
+app.use(express.json());
 
 // load favourites
 const dataStore = JSON.parse(fs.readFileSync(DATA_STORE_FILENAME, "utf-8"));
@@ -24,19 +24,22 @@ const dataStore = JSON.parse(fs.readFileSync(DATA_STORE_FILENAME, "utf-8"));
 
 // get all listings
 app.get(`${baseURL}/listings`, (req: any, res: any) => {
-  res.json(dataStore["listings"]);
+  const payload = [];
+  for (const id in dataStore["listings"]) {
+    const isFavourite = dataStore["favourites"][id];
+    payload.push({ id, isFavourite, ...dataStore["listings"][id] });
+  }
+  res.json(payload);
 });
 
 // get favourites
 app.get(`${baseURL}/favourites`, (req: any, res: any) => {
   const favouriteListingIds = Object.keys(dataStore["favourites"]);
   const payload: JSON[] = [];
-
   favouriteListingIds.forEach((listingId) => {
     const listing = dataStore["listings"][listingId];
     payload.push({ id: listingId, ...listing });
   });
-
   res.json(payload);
 });
 

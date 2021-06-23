@@ -1,12 +1,24 @@
 import Card from "src/components/card/card";
+import FavouriteService from "src/services/favourite-service";
 
-export default function Favourites(): JSX.Element {
-  const listings = [];
+export default function Favourites({ favourites }): JSX.Element {
+  const onFavouriteClick = (listingId: string, isFavourite: boolean) => {
+    if (isFavourite) {
+      FavouriteService.addToFavourites(listingId).catch(() => {
+        alert("Could not add to favourites");
+      });
+    } else {
+      FavouriteService.removeFromFavourites(listingId).catch(() => {
+        alert("Could not remove from favourites");
+      });
+    }
+  };
 
   return (
     <div className="fadeInUp">
-      {listings.map((result, idx) => {
+      {favourites.map((result, idx) => {
         const {
+          id,
           profilePictureSrc,
           username,
           imageSrc,
@@ -29,9 +41,22 @@ export default function Favourites(): JSX.Element {
             description={description}
             tags={tags}
             commentCount={commentCount}
+            isFavouriteInitially={true}
+            onFavouriteChange={(isFavourite: boolean) => {
+              onFavouriteClick(id, isFavourite);
+            }}
           />
         );
       })}
     </div>
   );
+}
+
+export async function getStaticProps(): Promise<any> {
+  const favourites = await FavouriteService.getFavourites();
+  return {
+    props: {
+      favourites,
+    },
+  };
 }

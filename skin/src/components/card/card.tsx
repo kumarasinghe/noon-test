@@ -11,6 +11,7 @@ type CardPropType = {
   description: string;
   tags: string[];
   commentCount: number;
+  isFavouriteInitially?: boolean;
   onFavouriteChange?: (status: boolean) => void;
 };
 
@@ -25,14 +26,15 @@ function Card(props: CardPropType): JSX.Element {
     description,
     tags,
     commentCount,
+    isFavouriteInitially,
     onFavouriteChange,
   } = props;
 
-  const [isFavourite, setFavourite] = useState(false);
+  const [isFavourite, setFavourite] = useState(isFavouriteInitially);
 
   const onFavouritePressed = () => {
+    onFavouriteChange?.(!isFavourite);
     setFavourite(!isFavourite);
-    onFavouriteChange?.(isFavourite);
   };
 
   return (
