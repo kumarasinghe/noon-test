@@ -15,6 +15,6 @@ Open a new terminal and execute:
 Then visit `http://localhost:3000` from your web browser.
 
 Note:
-Listings are store in noon-test/api-gateway/dataStore.json
+Listings are stored in noon-test/api-gateway/dataStore.json
 
 Thank you!
